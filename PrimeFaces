@@ -1,0 +1,107 @@
+
+<project xmlns="(link unavailable)" xmlns:xsi="(link unavailable)"
+  xsi:schemaLocation="(link unavailable) (link unavailable)">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>mi-proyecto</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>mi-proyecto</name>
+  <url>(link unavailable)</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.primefaces</groupId>
+      <artifactId>primefaces</artifactId>
+      <version>10.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+    </dependency>
+  </dependencies>
+</project>
+
+
+index.xhtml
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "(link unavailable)">
+<html xmlns="(link unavailable)"
+  xmlns:h="(link unavailable)"
+  xmlns:p="(link unavailable)">
+  <h:head>
+    <title>MI PROYECTO</title>
+  </h:head>
+  <h:body>
+    <h:form>
+      <p:panelGrid columns="2">
+        <h:outputLabel value="Nombre:" />
+        <p:inputText value="#{miBean.nombre}" />
+        <h:outputLabel value="Apellido:" />
+        <p:inputText value="#{miBean.apellido}" />
+      </p:panelGrid>
+      <p:commandButton value="Guardar" action="#{miBean.guardar}" />
+    </h:form>
+  </h:body>
+</html>
+
+
+MiBean.java
+
+package com.example;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+@ManagedBean
+@RequestScoped
+public class MiBean {
+  private String nombre;
+  private String apellido;
+
+  public String getNombre() {
+    return nombre;
+  }
+
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
+
+  public String getApellido() {
+    return apellido;
+  }
+
+  public void setApellido(String apellido) {
+    this.apellido = apellido;
+  }
+
+  public void guardar() {
+    System.out.println("Nombre: " + nombre);
+    System.out.println("Apellido: " + apellido);
+  }
+}
+
+
+web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="(link unavailable)"
+  xmlns:xsi="(link unavailable)"
+  xsi:schemaLocation="(link unavailable) (link unavailable)">
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+</web-app>
