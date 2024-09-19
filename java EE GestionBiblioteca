@@ -1,0 +1,112 @@
+Archivo: Libro.java
+
+
+
+public class Libro {
+    private int id;
+    private String titulo;
+    private String autor;
+
+    // Getters y setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        (link unavailable) = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+}
+
+
+
+Archivo: LibroServlet.java
+
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+public class LibroServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Código para manejar GET
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Código para manejar POST
+        String titulo = req.getParameter("titulo");
+        String autor = req.getParameter("autor");
+
+        Libro libro = new Libro();
+        libro.setTitulo(titulo);
+        libro.setAutor(autor);
+
+        // Guardar libro en base de datos
+    }
+}
+
+
+
+Archivo: index.jsp
+
+
+
+jsp
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Gestión Libros</title>
+</head>
+<body>
+    <h1>Gestión Libros</h1>
+    <form action="libroServlet" method="post">
+        <label>Título:</label>
+        <input type="text" name="titulo"><br>
+        <label>Autor:</label>
+        <input type="text" name="autor"><br>
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
+
+
+
+Archivo: web.xml
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="(link unavailable)"
+         xmlns:xsi="(link unavailable)"
+         xsi:schemaLocation="(link unavailable)
+         (link unavailable)"
+         version="3.1">
+    <servlet>
+        <servlet-name>libroServlet</servlet-name>
+        <servlet-class>com.example.LibroServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>libroServlet</servlet-name>
+        <url-pattern>/libroServlet</url-pattern>
+    </servlet-mapping>
+</web-app>
