@@ -1,0 +1,119 @@
+
+@Entity
+@Table(name = "empleados")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "nombre")
+    private String name;
+    @Column(name = "apellido")
+    private String lastName;
+    @Column(name = "email")
+    private String email;
+
+    // Getters y setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        (link unavailable) = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+
+
+
+Archivo: HibernateUtil.java
+
+
+
+public class HibernateUtil {
+    private static SessionFactory sessionFactory;
+
+    public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                Configuration configuration = new Configuration();
+                configuration.configure("hibernate.cfg.xml");
+                sessionFactory = configuration.buildSessionFactory();
+            } catch (Throwable ex) {
+                System.err.println("Error al crear la factoría de sesiones");
+                throw new ExceptionInInitializerError(ex);
+            }
+        }
+        return sessionFactory;
+    }
+}
+
+
+
+Archivo: hibernate.cfg.xml
+
+
+
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "(link unavailable)">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/gestion_empleados</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">password</property>
+
+        <mapping class="com.example.Employee"/>
+
+    </session-factory>
+
+</hibernate-configuration>
+
+
+
+Archivo: Main.java
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Employee employee = new Employee();
+        employee.setName("John");
+        employee.setLastName("Doe");
+        employee.setEmail("wilmerzamora@example.com");
+
+        session.save(employee);
+        transaction.commit();
+        session.close();
+    }
+}
