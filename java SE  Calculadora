@@ -1,0 +1,97 @@
+Archivo: Calculadora.java
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Calculadora extends JFrame {
+    private JTextField txtNumero1;
+    private JTextField txtNumero2;
+    private JTextField txtResultado;
+    private JButton btnSumar;
+    private JButton btnRestar;
+    private JButton btnMultiplicar;
+    private JButton btnDividir;
+
+    public Calculadora() {
+        super("Calculadora");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        // Crear componentes
+        txtNumero1 = new JTextField(10);
+        txtNumero2 = new JTextField(10);
+        txtResultado = new JTextField(10);
+        btnSumar = new JButton("+");
+        btnRestar = new JButton("-");
+        btnMultiplicar = new JButton("*");
+        btnDividir = new JButton("/");
+
+        // Agregar componentes
+        add(new JLabel("Número 1:"));
+        add(txtNumero1);
+        add(new JLabel("Número 2:"));
+        add(txtNumero2);
+        add(btnSumar);
+        add(btnRestar);
+        add(btnMultiplicar);
+        add(btnDividir);
+        add(new JLabel("Resultado:"));
+        add(txtResultado);
+
+        // Agregar eventos
+        btnSumar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num1 = Double.parseDouble(txtNumero1.getText());
+                double num2 = Double.parseDouble(txtNumero2.getText());
+                double resultado = num1 + num2;
+                txtResultado.setText(String.valueOf(resultado));
+            }
+        });
+
+        btnRestar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num1 = Double.parseDouble(txtNumero1.getText());
+                double num2 = Double.parseDouble(txtNumero2.getText());
+                double resultado = num1 - num2;
+                txtResultado.setText(String.valueOf(resultado));
+            }
+        });
+
+        btnMultiplicar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num1 = Double.parseDouble(txtNumero1.getText());
+                double num2 = Double.parseDouble(txtNumero2.getText());
+                double resultado = num1 * num2;
+                txtResultado.setText(String.valueOf(resultado));
+            }
+        });
+
+        btnDividir.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                double num1 = Double.parseDouble(txtNumero1.getText());
+                double num2 = Double.parseDouble(txtNumero2.getText());
+                if (num2 != 0) {
+                    double resultado = num1 / num2;
+                    txtResultado.setText(String.valueOf(resultado));
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se puede dividir entre cero");
+                }
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        Calculadora calculadora = new Calculadora();
+        calculadora.setVisible(true);
+    }
+}
+
