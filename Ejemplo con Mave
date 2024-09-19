@@ -1,0 +1,53 @@
+pom.xml
+
+<project xmlns="(link unavailable)" xmlns:xsi="(link unavailable)"
+  xsi:schemaLocation="(link unavailable) (link unavailable)">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>mi-proyecto</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>mi-proyecto</name>
+  <url>(link unavailable)</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+
+
+MiClase.java
+
+package com.example;
+
+public class MiClase {
+  public static void main(String[] args) {
+    System.out.println("Hola, mundo!");
+  }
+}
+
+
+MiClaseTest.java
+
+package com.example;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+public class MiClaseTest {
+  @Test
+  public void testMain() {
+    MiClase.main(null);
+  }
+}
